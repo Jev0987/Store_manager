@@ -65,7 +65,7 @@ public class ApplyOutController {
         String page = "exit_apply";
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
-            throw new Exception("该用户尚未登录");
+            return "NoAccount";
         }
         Long userId = user.getId();
         if (applyOutPut != null) {
@@ -108,7 +108,7 @@ public class ApplyOutController {
         String page = "exit_request_apply";
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
-            throw new Exception("该用户尚未登录");
+            return "NoAccount";
         }
         StringBuffer sql = null;
         if (entrepotStatus != null) {
@@ -151,7 +151,7 @@ public class ApplyOutController {
     public String SaveApplyOut(ApplyOutPut applyOutPut , HttpServletRequest request , ModelMap modelMap , int id) throws Exception {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
-            throw new Exception("该用户尚未登录");
+            return "NoAccount";
         }
         //并未对良品优品做分类
         ApplyOutPut outPut = applyOutRepository.findApplyOutPutById(id);
@@ -187,7 +187,7 @@ public class ApplyOutController {
     public String turndown(int id , HttpServletRequest request ) throws Exception {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
-            throw new Exception("该用户尚未登录");
+            return "NoAccount";
         }
         ApplyOutPut output = applyOutRepository.findApplyOutPutById(id);
         if (output == null) {
@@ -217,7 +217,7 @@ public class ApplyOutController {
         int nums2 = 0;
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
-            throw new Exception("该用户尚未登录");
+            return "NoAccount";
         }
         Long userid = user.getId();
 
@@ -273,7 +273,7 @@ public class ApplyOutController {
     public String saveApply(ApplyOutPut applyOutPut , BindingResult bindingResult, HttpServletRequest request , ModelMap modelMap) throws Exception {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
-            throw new Exception("该用户尚未登录");
+            return "NoAccount";
         }
         Long userId = user.getId();
         applyOutPut.setApplyPersonId(user.getUsername());
@@ -303,7 +303,7 @@ public class ApplyOutController {
     public String deleteById(int enterId , HttpServletRequest request ) throws Exception {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
-            throw new Exception("该用户尚未登录");
+            return "NoAccount";
         }
         ApplyOutPut applyOutPut = applyOutRepository.findApplyOutPutById(enterId);
         int nums = applyOutPut.getSize();
@@ -345,7 +345,7 @@ public class ApplyOutController {
         String page = "exit_apply_wait";
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
-            throw new Exception("该用户尚未登录");
+            return "NoAccount";
         }
         if (applyOutPut != null) {
             StringBuffer sql = null;
@@ -396,7 +396,7 @@ public class ApplyOutController {
         String page = "exit_apply_history";
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
-            throw new Exception("该用户尚未登录");
+            return "NoAccount";
         }
         if (applyOutPut != null) {
             StringBuffer sql = null;

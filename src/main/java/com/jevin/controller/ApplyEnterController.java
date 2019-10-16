@@ -57,7 +57,7 @@ public class ApplyEnterController {
         User user = (User) request.getSession().getAttribute("user");
         System.out.println("当前操作人：" + user);
         if (user == null){
-            throw new Exception("当前用户尚未登录");
+            return "NoAccount";
         }
         Long id = user.getId();
         //查询，如果不为空继续查，为空加载分页信息
@@ -94,7 +94,7 @@ public class ApplyEnterController {
         String page = "entrance_apply_wait";
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
-            throw new Exception("该用户尚未登录");
+            return "NoAccount";
         }
         System.err.println("当前操作用户是：" + user);
         applyEnter.setApplyPersonId(user.getUsername());
@@ -115,7 +115,7 @@ public class ApplyEnterController {
         User user = (User) request.getSession().getAttribute("user");
         //User user = (User) session.getAttribute("user");
         if (user == null){
-            throw new Exception("该用户尚未登录");
+            return "NoAccount";
         }
         if (applyEnter != null){
             StringBuffer sql = null;
@@ -188,7 +188,7 @@ public class ApplyEnterController {
         applyEnter.setStatus("被拒绝");
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
-            throw new Exception("该用户尚未登陆");
+            return "NoAccount";
         }
         applyEnter.setEnsurePersonId(user.getUsername());
         applyEnterRepository.save(applyEnter);
@@ -275,7 +275,7 @@ public class ApplyEnterController {
     public String deleteApplyById(int enterId , HttpServletRequest request) throws Exception {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
-            throw new Exception("该用户尚未登录");
+            return "NoAccount";
         }
         ApplyEnter applyEnter = applyEnterRepository.findApplyEnterByEnterId(enterId);
         applyEnterRepository.delete(applyEnter);
@@ -293,7 +293,7 @@ public class ApplyEnterController {
     public String deletehisApplyById(int enterId , HttpServletRequest request) throws Exception {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
-            throw new Exception("该用户尚未登录");
+            return "NoAccount";
         }
         ApplyEnter applyEnter = applyEnterRepository.findApplyEnterByEnterId(enterId);
         applyEnterRepository.delete(applyEnter);
